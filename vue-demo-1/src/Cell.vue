@@ -1,6 +1,5 @@
 <template>
   <div>
-    {{ step }}
     <div class="cell" v-on:click="onClickSelf">
       <div v-if="a">{{ text }}</div>
       <div v-else v-on:click="a = true"></div>
@@ -10,14 +9,14 @@
 
 <script>
 export default {
-  props: ["n"],
+  props: ["n", "finished"],
   data() {
     // ES6 语法
-    return { a: false, text: "", step: "0" };
+    return { a: false, text: "", step: "" };
   },
   methods: {
     onClickSelf() {
-      if (this.text !== "") {
+      if (this.text !== "" || this.finished === true) {
         return;
       }
       this.a = true;
