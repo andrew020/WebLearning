@@ -1,58 +1,60 @@
 <template>
-  <div>
+  <div class="wrapper">
     <div>第{{ n + 1 }}手，当前轮次：{{ this.n % 2 == 0 ? "X" : "O" }}</div>
-    <div class="row">
-      <Cell
-        v-on:click="onClickCell(0, $event)"
-        v-bind:n="n"
-        v-bind:finished="finished"
-      />
-      <Cell
-        v-on:click="onClickCell(1, $event)"
-        v-bind:n="n"
-        v-bind:finished="finished"
-      />
-      <Cell
-        v-on:click="onClickCell(2, $event)"
-        v-bind:n="n"
-        v-bind:finished="finished"
-      />
+    <div class="chess">
+      <div class="row">
+        <Cell
+          v-on:click="onClickCell(0, $event)"
+          v-bind:n="n"
+          v-bind:finished="finished"
+        />
+        <Cell
+          v-on:click="onClickCell(1, $event)"
+          v-bind:n="n"
+          v-bind:finished="finished"
+        />
+        <Cell
+          v-on:click="onClickCell(2, $event)"
+          v-bind:n="n"
+          v-bind:finished="finished"
+        />
+      </div>
+      <div class="row">
+        <Cell
+          v-on:click="onClickCell(3, $event)"
+          v-bind:n="n"
+          v-bind:finished="finished"
+        />
+        <Cell
+          v-on:click="onClickCell(4, $event)"
+          v-bind:n="n"
+          v-bind:finished="finished"
+        />
+        <Cell
+          v-on:click="onClickCell(5, $event)"
+          v-bind:n="n"
+          v-bind:finished="finished"
+        />
+      </div>
+      <div class="row">
+        <Cell
+          v-on:click="onClickCell(6, $event)"
+          v-bind:n="n"
+          v-bind:finished="finished"
+        />
+        <Cell
+          v-on:click="onClickCell(7, $event)"
+          v-bind:n="n"
+          v-bind:finished="finished"
+        />
+        <Cell
+          v-on:click="onClickCell(8, $event)"
+          v-bind:n="n"
+          v-bind:finished="finished"
+        />
+      </div>
     </div>
-    <div class="row">
-      <Cell
-        v-on:click="onClickCell(3, $event)"
-        v-bind:n="n"
-        v-bind:finished="finished"
-      />
-      <Cell
-        v-on:click="onClickCell(4, $event)"
-        v-bind:n="n"
-        v-bind:finished="finished"
-      />
-      <Cell
-        v-on:click="onClickCell(5, $event)"
-        v-bind:n="n"
-        v-bind:finished="finished"
-      />
-    </div>
-    <div class="row">
-      <Cell
-        v-on:click="onClickCell(6, $event)"
-        v-bind:n="n"
-        v-bind:finished="finished"
-      />
-      <Cell
-        v-on:click="onClickCell(7, $event)"
-        v-bind:n="n"
-        v-bind:finished="finished"
-      />
-      <Cell
-        v-on:click="onClickCell(8, $event)"
-        v-bind:n="n"
-        v-bind:finished="finished"
-      />
-    </div>
-    <div v-if="finished === true">胜利者是:{{ result }}</div>
+    <div>{{ result === null ? "胜负未分" : `胜方为${result}` }}</div>
   </div>
 </template>
 
@@ -68,7 +70,7 @@ export default {
         [null, null, null],
         [null, null, null],
       ],
-      result: "",
+      result: null,
       winValue: 3,
       bar: 3,
     };
@@ -87,7 +89,7 @@ export default {
       } else if (this.checkS(x, y, text) == true) {
         this.result = text;
       }
-      if (this.result !== "") {
+      if (this.result !== null) {
         this.finished = true;
       }
     },
@@ -166,5 +168,11 @@ export default {
 <style>
 .row {
   display: flex;
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 </style>
