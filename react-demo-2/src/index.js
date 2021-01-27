@@ -16,6 +16,7 @@ const Chessboard = function () {
     [null, null, null],
     [null, null, null],
   ]);
+  const[finished, setFinished] = useState(false)
   const [n, setN] = useState(0);
   const tell = (s, x, y) => {
     const directions = [
@@ -65,6 +66,7 @@ const Chessboard = function () {
     // 判断谁赢了
     if (tell(newCells[row][col], row, col) === true) {
       console.log(newCells[row][col] + "赢了");
+      setFinished(true);
     }
   };
 
@@ -80,6 +82,9 @@ const Chessboard = function () {
           ))}
         </div>
       ))}
+      {finished && <div className="gameOver">
+        游戏结束
+      </div>}
     </div>
   );
 };
